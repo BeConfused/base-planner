@@ -1,4 +1,6 @@
-baseName: "test"
+baseName: test
 buildings:
-- id: "electromagnetic-generator"
+- id: electromagnetic-generator
+  amount: 1
+- id: supply-depot
   amount: 1

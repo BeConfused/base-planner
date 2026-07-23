@@ -12,18 +12,31 @@ var configPaths []string
 
 func init() {
 	configPaths = []string{
+		os.Getenv("MATERIALS_FILE"),
+		os.Getenv("RECIPE_FILE"),
 		os.Getenv("PLAN_FILE"),
 	}
 }
 
 func main() {
-	fmt.Printf("hello, %s\n", "world!")
 	b := &plan.Base{}
-	file, err := os.ReadFile(configPaths[0])
-	if err != nil {
-		panic(err)
+
+	_, mfErr := os.ReadFile(configPaths[0])
+	if mfErr != nil {
+		panic(mfErr)
 	}
-	yaml.Unmarshal(file, b)
-	fmt.Printf("%s\n", file)
+
+	_, rfErr := os.ReadFile(configPaths[1])
+	if rfErr != nil {
+		panic(rfErr)
+	}
+
+	pf, pfErr := os.ReadFile(configPaths[2])
+	if pfErr != nil {
+		panic(pfErr)
+	}
+
+	yaml.Unmarshal(pf, b)
+	fmt.Printf("%s\n", pf)
 	fmt.Printf("%v\n", b)
 }

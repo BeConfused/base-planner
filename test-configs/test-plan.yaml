@@ -1,0 +1,4 @@
+baseName: "test"
+buildings:
+- id: "electromagnetic-generator"
+  amount: 1

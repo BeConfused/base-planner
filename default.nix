@@ -6,7 +6,6 @@ pkgs.mkShell {
     nodejs_26
     pnpm
   ];
-  GOCMD="cmd/";
   GOPATH="${toString ./.}/.nix-workspace";
   GOFLAGS="-o=${toString ./.}/build/";
   PLAN_FILE="test-configs/test-plan.yaml";

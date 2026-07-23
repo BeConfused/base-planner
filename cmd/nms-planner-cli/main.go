@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
+	nomanssky "nms-planner-cli/internal/pkg/no-mans-sky"
 	"nms-planner-cli/internal/pkg/plan"
-	"nms-planner-cli/internal/pkg/util"
 	"os"
 
 	"gopkg.in/yaml.v3"
@@ -20,7 +20,7 @@ func init() {
 
 func main() {
 	b := &plan.Base{}
-	c := &util.Config{}
+	c := &nomanssky.Config{}
 
 	fmt.Println("Reading Config...")
 	cf, mfErr := os.ReadFile(configPaths[0])
@@ -40,5 +40,9 @@ func main() {
 
 	fmt.Println("Loading Plan...")
 	yaml.Unmarshal(pf, b)
-	fmt.Printf("%v\n", b)
+	report, err := b.Eval(*c)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(report)
 }

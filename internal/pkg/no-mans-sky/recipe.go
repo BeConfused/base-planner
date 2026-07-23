@@ -1,6 +1,6 @@
 package nomanssky
 
 type Recipe struct {
-	Output RecipeComponent   `yaml:",inline"`
-	Input  []RecipeComponent `yaml:"requirements"`
+	Output EntityCount[NMSEntity]   `yaml:",inline"`
+	Input  []EntityCount[NMSEntity] `yaml:"requirements"`
 }

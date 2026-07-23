@@ -1,0 +1,25 @@
+recipes:
+- id: electromagnetic-generator
+  requirements:
+  - id: metal-plating
+    amount: 2
+  - id: magnetised-ferrite
+    amount: 60
+  - id: chromatic-metal
+    amount: 75
+- id: supply-depot
+  requirements:
+  - id: metal-plating
+    amount: 10
+materials:
+- id: metal-plating
+  name: Metal Plating
+- id: magnetised-ferrite
+  name: Magnetised Ferrite
+- id: chromatic-metal
+  name: Chromatic Metal
+buildings:
+- id: electromagnetic-generator
+  name: Electromagnetic Generator
+- id: supply-depot
+  name: Supply Depot

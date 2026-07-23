@@ -9,6 +9,5 @@ pkgs.mkShell {
   GOPATH="${toString ./.}/.nix-workspace";
   GOFLAGS="-o=${toString ./.}/build/";
   PLAN_FILE="test-configs/test-plan.yaml";
-  RECIPE_FILE="test-configs/recipes.yaml";
-  MATERIALS_FILE="test-configs/materials.yaml";
+  CONFIG_FILE="test-configs/config.yaml";
 }

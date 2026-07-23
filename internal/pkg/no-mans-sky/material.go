@@ -1,6 +1,6 @@
 package nomanssky
 
-type Building struct {
+type Material struct {
 	ID   string `yaml:"id"`
 	Name string `yaml:"name"`
 }

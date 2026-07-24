@@ -20,6 +20,14 @@ func (b Base) Eval(c nomanssky.Config) (string, error) {
 			return "", err
 		}
 		report += fmt.Sprintf("- %v * %s\n", item.Amount, building.Name)
+		recipe, err := c.FindRecipe(item.EntityID)
+		if err != nil {
+			return "", err
+		}
+
+		for _, material := range recipe.Input {
+			report += fmt.Sprintf("  - %v * %s\n", material.Amount*item.Amount, material.EntityID)
+		}
 	}
 
 	return report, nil

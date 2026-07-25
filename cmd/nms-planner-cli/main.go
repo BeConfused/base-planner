@@ -10,10 +10,8 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-var configPaths []string
-
 func main() {
-	configPaths = []string{
+	configPaths := []string{
 		os.Getenv("CONFIG_FILE"),
 		os.Getenv("PLAN_FILE"),
 	}

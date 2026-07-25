@@ -3,4 +3,4 @@ buildings:
 - id: electromagnetic-generator
   amount: 1
 - id: supply-depot
-  amount: 1
+  amount: 3

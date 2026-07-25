@@ -6,21 +6,22 @@ import (
 )
 
 type Base struct {
+	NMSConfig nomanssky.Config
 	Name      string                                      `yaml:"baseName"`
 	Buildings []nomanssky.EntityCount[nomanssky.Building] `yaml:"buildings"`
 }
 
-func (b Base) Eval(c nomanssky.Config) (string, error) {
+func (b Base) Eval() (string, error) {
 	report := fmt.Sprintf("Planned Base: %s\n", b.Name)
 	report += fmt.Sprintf("Buildings: %s\n", "")
 
 	for _, item := range b.Buildings {
-		building, err := item.GetEntity(c.Buildings)
+		building, err := item.GetEntity(b.NMSConfig.Buildings)
 		if err != nil {
 			return "", err
 		}
 		report += fmt.Sprintf("- %v * %s\n", item.Amount, building.Name)
-		recipe, err := c.FindRecipe(item.EntityID)
+		recipe, err := b.NMSConfig.FindRecipe(item.EntityID)
 		if err != nil {
 			return "", err
 		}
@@ -31,4 +32,18 @@ func (b Base) Eval(c nomanssky.Config) (string, error) {
 	}
 
 	return report, nil
+}
+
+func (b Base) GetReport(c nomanssky.Config) (*Report[nomanssky.Building], error) {
+	buildings := []Requirement[nomanssky.Building]{}
+	for _, item := range b.Buildings {
+		building, bErr := FromEntityCount(c, b.NMSConfig.Buildings, item, 1)
+		if bErr != nil {
+			return nil, bErr
+		}
+		buildings = append(buildings, *building)
+	}
+	return &Report[nomanssky.Building]{
+		List: buildings,
+	}, nil
 }

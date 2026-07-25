@@ -8,3 +8,7 @@ type Building struct {
 func (b Building) GetID() string {
 	return b.ID
 }
+
+func (b Building) GetName() string {
+	return b.Name
+}

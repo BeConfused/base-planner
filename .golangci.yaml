@@ -2,7 +2,7 @@
 version: "2"
 linters:
   # See the dedicated "linters" documentation section.
-  default: standard
+  default: all
   # default: all
   # disable:
   # - wsl

@@ -21,27 +21,23 @@ func main() {
 	base := new(plan.Base)
 	config := new(nomanssky.Config)
 
-	// fmt.Println("Reading Config...")
 	cleanConfigPath := filepath.Clean(paths.Config)
 	configFile, configFileErr := os.ReadFile(cleanConfigPath)
 	if configFileErr != nil {
 		panic(configFileErr)
 	}
 
-	// fmt.Println("Reading Plan...")
 	cleanPlanPath := filepath.Clean(paths.Plan)
 	pathFile, pathFileErr := os.ReadFile(cleanPlanPath)
 	if pathFileErr != nil {
 		panic(pathFileErr)
 	}
 
-	// fmt.Println("Loading Config...")
 	umErr := yaml.Unmarshal(configFile, config)
 	if umErr != nil {
 		panic(umErr)
 	}
 
-	fmt.Println("Loading Plan...")
 	umErr = yaml.Unmarshal(pathFile, base)
 	if umErr != nil {
 		panic(umErr)
@@ -52,5 +48,8 @@ func main() {
 	if rErr != nil {
 		panic(rErr)
 	}
-	fmt.Printf("%v", report.FormatAsString())
+	_, err := fmt.Fprintf(os.Stdout, "%v", report.FormatAsString())
+	if err != nil {
+		panic(err)
+	}
 }

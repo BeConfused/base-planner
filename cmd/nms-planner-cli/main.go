@@ -12,16 +12,14 @@ import (
 
 var configPaths []string
 
-func init() {
+func main() {
 	configPaths = []string{
 		os.Getenv("CONFIG_FILE"),
 		os.Getenv("PLAN_FILE"),
 	}
-}
 
-func main() {
-	b := &plan.Base{}
-	c := &nomanssky.Config{}
+	b := new(plan.Base)
+	c := new(nomanssky.Config)
 
 	// fmt.Println("Reading Config...")
 	cf, mfErr := os.ReadFile(configPaths[0])

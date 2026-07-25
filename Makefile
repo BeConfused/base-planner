@@ -1,15 +1,15 @@
 .PHONY: init
 init:
-	go install ./cmd/*/
+	@go install ./cmd/*/
 
 .PHONY: build
 build:
-	go build ./cmd/*/
+	@go build ./cmd/*/
 
 .PHONY: run
 run:
-	go run ./cmd/nms-planner-cli/main.go
+	@go run ./cmd/nms-planner-cli/main.go
 
 .PHONY: lint
 lint:
-	golangci-lint run
+	@golangci-lint run

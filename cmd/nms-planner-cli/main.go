@@ -1,56 +1,64 @@
+// package main provides the basic entrypoint for the CLI
 package main
 
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 
 	nomanssky "github.com/BeConfused/nms-planner-cli/internal/pkg/no-mans-sky"
 	"github.com/BeConfused/nms-planner-cli/internal/pkg/plan"
+	"github.com/BeConfused/nms-planner-cli/internal/pkg/util"
 
 	"gopkg.in/yaml.v3"
 )
 
-var configPaths []string
-
-func init() {
-	configPaths = []string{
-		os.Getenv("CONFIG_FILE"),
-		os.Getenv("PLAN_FILE"),
-	}
-}
-
 func main() {
-	b := &plan.Base{}
-	c := &nomanssky.Config{}
-
-	// fmt.Println("Reading Config...")
-	cf, mfErr := os.ReadFile(configPaths[0])
-	if mfErr != nil {
-		panic(mfErr)
+	paths := util.PathList{
+		Config: os.Getenv("CONFIG_FILE"),
+		Plan:   os.Getenv("PLAN_FILE"),
 	}
 
-	// fmt.Println("Reading Plan...")
-	pf, pfErr := os.ReadFile(configPaths[1])
-	if pfErr != nil {
-		panic(pfErr)
+	base := new(plan.Base)
+	config := new(nomanssky.Config)
+
+	cleanConfigPath := filepath.Clean(paths.Config)
+
+	configFile, configFileErr := os.ReadFile(cleanConfigPath)
+	if configFileErr != nil {
+		panic(configFileErr)
 	}
 
-	// fmt.Println("Loading Config...")
-	umErr := yaml.Unmarshal(cf, c)
+	cleanPlanPath := filepath.Clean(paths.Plan)
+
+	pathFile, pathFileErr := os.ReadFile(cleanPlanPath)
+	if pathFileErr != nil {
+		panic(pathFileErr)
+	}
+
+	umErr := yaml.Unmarshal(configFile, config)
 	if umErr != nil {
 		panic(umErr)
 	}
 
-	fmt.Println("Loading Plan...")
-	umErr = yaml.Unmarshal(pf, b)
+	umErr = yaml.Unmarshal(pathFile, base)
 	if umErr != nil {
 		panic(umErr)
 	}
-	b.NMSConfig = *c
 
-	report, rErr := b.GetReport(*c)
+	if base.NMSConfig.IsEmpty() {
+		base.NMSConfig = *config
+	} else { // Temporary fix: Larger refactoring required
+		config = &base.NMSConfig
+	}
+
+	report, rErr := base.GetReport(*config)
 	if rErr != nil {
 		panic(rErr)
 	}
-	fmt.Printf("%v", report.FormatAsString())
+
+	_, err := fmt.Fprintf(os.Stdout, "%v", report.FormatAsString())
+	if err != nil {
+		panic(err)
+	}
 }

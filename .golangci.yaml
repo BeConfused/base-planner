@@ -3,13 +3,20 @@ version: "2"
 linters:
   # See the dedicated "linters" documentation section.
   default: all
-  # default: all
-  # disable:
-  # - wsl
-  # - gomodguard
-  # enable:
-  # - wsl_v5
-  # - gomodguard_v2
+  disable:
+  - wsl
+  - gomodguard
+  enable:
+  - wsl_v5
+  - gomodguard_v2
+  settings:
+    depguard:
+      rules:
+        main:
+          allow:
+          - $gostd
+          - github.com/BeConfused/nms-planner-cli
+          - gopkg.in/yaml.v3
 # formatters:
 #   # See the dedicated "formatters" documentation section.
 #   option: value

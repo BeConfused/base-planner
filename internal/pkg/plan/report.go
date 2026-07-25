@@ -7,10 +7,13 @@ import (
 	nomanssky "github.com/BeConfused/nms-planner-cli/internal/pkg/no-mans-sky"
 )
 
+// Report eceives a List of Requirements to Report on and exposes
+// a set of Functions to receive them back in a formatted way.
 type Report[C nomanssky.NMSEntity] struct {
 	List []Requirement[C]
 }
 
+// FormatAsString returns the report as a concatenated string.
 func (r *Report[C]) FormatAsString() string {
 	indentChar := ' '
 	charsPerIndent := 2
@@ -47,6 +50,11 @@ func (r *Report[C]) FormatAsString() string {
 	return report.String()
 }
 
+/* Summarizes all materials required by its list of entities.
+ * For Example:
+ * material a is needed by entity 1 and entity 3.
+ * it will add the material to the list on entity 1 and then increment its amount by the amount of entity 3.
+ */
 func (r *Report[C]) getTotal() []Requirement[nomanssky.Material] {
 	total := []Requirement[nomanssky.Material]{}
 

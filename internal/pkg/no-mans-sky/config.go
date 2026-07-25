@@ -14,5 +14,5 @@ func (c Config) FindRecipe(eID string) (*Recipe, error) {
 			return &recipe, nil
 		}
 	}
-	return nil, fmt.Errorf("No Recipe Found")
+	return nil, fmt.Errorf("no recipe found")
 }

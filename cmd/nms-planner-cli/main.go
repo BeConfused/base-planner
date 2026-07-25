@@ -36,10 +36,16 @@ func main() {
 	}
 
 	// fmt.Println("Loading Config...")
-	yaml.Unmarshal(cf, c)
+	umErr := yaml.Unmarshal(cf, c)
+	if umErr != nil {
+		panic(umErr)
+	}
 
 	fmt.Println("Loading Plan...")
-	yaml.Unmarshal(pf, b)
+	umErr = yaml.Unmarshal(pf, b)
+	if umErr != nil {
+		panic(umErr)
+	}
 	b.NMSConfig = *c
 
 	report, rErr := b.GetReport(*c)

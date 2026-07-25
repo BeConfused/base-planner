@@ -13,7 +13,6 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     env:
-      GOPATH: "./.nix-workspace"
       GOFLAGS: "-o=./build/"
     steps:
     - name: Checkout

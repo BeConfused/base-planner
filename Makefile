@@ -1,3 +1,7 @@
+.PHONY: init
+init:
+	go install ./cmd/*/
+
 .PHONY: build
 build:
 	go build ./cmd/*/

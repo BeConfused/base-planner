@@ -1,0 +1,43 @@
+name: "Continuous Integration"
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
+      with:
+        fetch-depth: 0
+    - name: Set up Go
+      uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+      with:
+        # Version or version range of Go to use
+        go-version: '1.26'
+        
+        # Path to go.mod, go.work, .go-version, or .tool-versions file
+        # Note: if both go-version and go-version-file are provided, go-version takes precedence.
+        go-version-file: 'go.mod'
+        
+        # Set this option if you want the action to check for the latest available version
+        # Default: false
+        check-latest: false
+        # GitHub token for authentication
+        token: ${{ github.token }}
+        # Used to specify whether caching is needed.
+        # Default: true
+        cache: true
+        # Path to dependency files for caching
+        cache-dependency-path: 'go.sum'
+        # Architecture to install (auto-detected if not specified)
+        architecture: 'x64'
+    - name: Lint
+      uses: golangci/golangci-lint-action@ba0d7d2ec06a0ea1cb5fa41b2e4a3ab91d21278a # v9.3.0

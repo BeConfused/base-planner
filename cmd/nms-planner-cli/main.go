@@ -18,35 +18,35 @@ func main() {
 		os.Getenv("PLAN_FILE"),
 	}
 
-	b := new(plan.Base)
-	c := new(nomanssky.Config)
+	base := new(plan.Base)
+	config := new(nomanssky.Config)
 
 	// fmt.Println("Reading Config...")
-	cf, mfErr := os.ReadFile(configPaths[0])
-	if mfErr != nil {
-		panic(mfErr)
+	configFile, configFileErr := os.ReadFile(configPaths[0])
+	if configFileErr != nil {
+		panic(configFileErr)
 	}
 
 	// fmt.Println("Reading Plan...")
-	pf, pfErr := os.ReadFile(configPaths[1])
-	if pfErr != nil {
-		panic(pfErr)
+	pathFile, pathFileErr := os.ReadFile(configPaths[1])
+	if pathFileErr != nil {
+		panic(pathFileErr)
 	}
 
 	// fmt.Println("Loading Config...")
-	umErr := yaml.Unmarshal(cf, c)
+	umErr := yaml.Unmarshal(configFile, config)
 	if umErr != nil {
 		panic(umErr)
 	}
 
 	fmt.Println("Loading Plan...")
-	umErr = yaml.Unmarshal(pf, b)
+	umErr = yaml.Unmarshal(pathFile, base)
 	if umErr != nil {
 		panic(umErr)
 	}
-	b.NMSConfig = *c
+	base.NMSConfig = *config
 
-	report, rErr := b.GetReport(*c)
+	report, rErr := base.GetReport(*config)
 	if rErr != nil {
 		panic(rErr)
 	}

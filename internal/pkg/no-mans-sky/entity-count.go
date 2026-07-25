@@ -1,6 +1,11 @@
 package nomanssky
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
+
+var ErrEntityNotFound = errors.New("Entity not found")
 
 type EntityCount[C NMSEntity] struct {
 	Amount   int32  `yaml:"amount"`
@@ -14,5 +19,5 @@ func (ec EntityCount[C]) GetEntity(c []C) (*C, error) {
 			return &entity, nil
 		}
 	}
-	return nil, fmt.Errorf("Building Not Found")
+	return nil, fmt.Errorf("%w: Ensure, that an entity of type %T exists", ErrEntityNotFound, new(C))
 }

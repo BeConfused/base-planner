@@ -1,9 +1,10 @@
 package plan
 
 import (
-	nomanssky "BeConfused/nms-planner-cli/internal/pkg/no-mans-sky"
 	"fmt"
 	"strings"
+
+	nomanssky "github.com/BeConfused/nms-planner-cli/internal/pkg/no-mans-sky"
 )
 
 type Report[C nomanssky.NMSEntity] struct {

@@ -1,8 +1,9 @@
 package plan
 
 import (
-	nomanssky "BeConfused/nms-planner-cli/internal/pkg/no-mans-sky"
 	"fmt"
+
+	nomanssky "github.com/BeConfused/nms-planner-cli/internal/pkg/no-mans-sky"
 )
 
 type Base struct {

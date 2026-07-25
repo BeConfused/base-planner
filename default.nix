@@ -4,6 +4,9 @@ pkgs.mkShell {
     go_1_26
     git
     gitleaks
+    delve
+    golangci-lint
+    gosec
   ];
   GOPATH="${toString ./.}/.nix-workspace";
   GOFLAGS="-o=${toString ./.}/build/";

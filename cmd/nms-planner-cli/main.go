@@ -1,10 +1,11 @@
 package main
 
 import (
-	nomanssky "BeConfused/nms-planner-cli/internal/pkg/no-mans-sky"
-	"BeConfused/nms-planner-cli/internal/pkg/plan"
 	"fmt"
 	"os"
+
+	nomanssky "github.com/BeConfused/nms-planner-cli/internal/pkg/no-mans-sky"
+	"github.com/BeConfused/nms-planner-cli/internal/pkg/plan"
 
 	"gopkg.in/yaml.v3"
 )

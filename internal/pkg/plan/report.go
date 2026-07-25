@@ -12,12 +12,16 @@ type Report[C nomanssky.NMSEntity] struct {
 }
 
 func (r *Report[C]) FormatAsString() string {
+	indentChar := ' '
+	charsPerIndent := 2
+	startingIndentLevel := 1
 	report := "Report:\n"
 	for _, item := range r.List {
 		target := *item.Target
 		report += fmt.Sprintf("- %v x %s\n", item.Amount, target.GetName())
 		for _, material := range item.Materials {
-			report += indent(' ', 2, 1) + fmt.Sprintf("- %v x %s\n", material.Amount, material.Target.GetName())
+			report += indent(indentChar, charsPerIndent, startingIndentLevel)
+			report += fmt.Sprintf("- %v x %s\n", material.Amount, material.Target.GetName())
 		}
 	}
 	total := r.getTotal()
@@ -26,7 +30,8 @@ func (r *Report[C]) FormatAsString() string {
 		target := *item.Target
 		report += fmt.Sprintf("- %v x %s\n", item.Amount, target.GetName())
 		for _, material := range item.Materials {
-			report += indent(' ', 2, 1) + fmt.Sprintf("- %v x %s\n", material.Amount, material.Target.GetName())
+			report += indent(indentChar, charsPerIndent, startingIndentLevel)
+			report += fmt.Sprintf("- %v x %s\n", material.Amount, material.Target.GetName())
 		}
 	}
 	return report

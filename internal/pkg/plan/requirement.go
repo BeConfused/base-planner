@@ -1,6 +1,10 @@
 package plan
 
-import nomanssky "github.com/BeConfused/nms-planner-cli/internal/pkg/no-mans-sky"
+import (
+	"fmt"
+
+	nomanssky "github.com/BeConfused/nms-planner-cli/internal/pkg/no-mans-sky"
+)
 
 type Requirement[C nomanssky.NMSEntity] struct {
 	Target    *C
@@ -11,11 +15,13 @@ type Requirement[C nomanssky.NMSEntity] struct {
 func FromEntityCount[C nomanssky.NMSEntity](config nomanssky.Config, c []C, ec nomanssky.EntityCount[C], amountAmp int32) (*Requirement[C], error) {
 	entityRef, geErr := ec.GetEntity(c)
 	if geErr != nil {
-		return nil, geErr
+		return nil, fmt.Errorf("building requirement failed: %w", geErr)
 	}
+
 	entity := *entityRef
 
 	materials := []Requirement[nomanssky.Material]{}
+
 	recipe, rErr := config.FindRecipe(entity.GetID())
 	if rErr == nil {
 		for _, input := range recipe.Input {
@@ -23,6 +29,7 @@ func FromEntityCount[C nomanssky.NMSEntity](config nomanssky.Config, c []C, ec n
 			if mErr != nil {
 				return nil, mErr
 			}
+
 			materials = append(materials, *material)
 		}
 	}

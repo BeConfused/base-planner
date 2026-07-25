@@ -22,12 +22,14 @@ func main() {
 	config := new(nomanssky.Config)
 
 	cleanConfigPath := filepath.Clean(paths.Config)
+
 	configFile, configFileErr := os.ReadFile(cleanConfigPath)
 	if configFileErr != nil {
 		panic(configFileErr)
 	}
 
 	cleanPlanPath := filepath.Clean(paths.Plan)
+
 	pathFile, pathFileErr := os.ReadFile(cleanPlanPath)
 	if pathFileErr != nil {
 		panic(pathFileErr)
@@ -42,6 +44,7 @@ func main() {
 	if umErr != nil {
 		panic(umErr)
 	}
+
 	if base.NMSConfig.IsEmpty() {
 		base.NMSConfig = *config
 	} else { // Temporary fix: Larger refactoring required
@@ -52,6 +55,7 @@ func main() {
 	if rErr != nil {
 		panic(rErr)
 	}
+
 	_, err := fmt.Fprintf(os.Stdout, "%v", report.FormatAsString())
 	if err != nil {
 		panic(err)

@@ -15,21 +15,29 @@ func (r *Report[C]) FormatAsString() string {
 	indentChar := ' '
 	charsPerIndent := 2
 	startingIndentLevel := 1
+
 	var report strings.Builder
+
 	report.WriteString("Report:\n")
+
 	for _, item := range r.List {
 		target := *item.Target
 		report.WriteString(fmt.Sprintf("- %v x %s\n", item.Amount, target.GetName()))
+
 		for _, material := range item.Materials {
 			report.WriteString(indent(indentChar, charsPerIndent, startingIndentLevel))
 			report.WriteString(fmt.Sprintf("- %v x %s\n", material.Amount, material.Target.GetName()))
 		}
 	}
+
 	total := r.getTotal()
+
 	report.WriteString("Total:\n")
+
 	for _, item := range total {
 		target := *item.Target
 		report.WriteString(fmt.Sprintf("- %v x %s\n", item.Amount, target.GetName()))
+
 		for _, material := range item.Materials {
 			report.WriteString(indent(indentChar, charsPerIndent, startingIndentLevel))
 			report.WriteString(fmt.Sprintf("- %v x %s\n", material.Amount, material.Target.GetName()))
@@ -41,6 +49,7 @@ func (r *Report[C]) FormatAsString() string {
 
 func (r *Report[C]) getTotal() []Requirement[nomanssky.Material] {
 	total := []Requirement[nomanssky.Material]{}
+
 	for _, item := range r.List {
 		for _, material := range item.Materials {
 			foundOn := findIndexByID(total, material)

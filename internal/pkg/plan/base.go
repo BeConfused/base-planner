@@ -12,11 +12,13 @@ type Base struct {
 
 func (b Base) GetReport(c nomanssky.Config) (*Report[nomanssky.Building], error) {
 	buildings := []Requirement[nomanssky.Building]{}
+
 	for _, item := range b.Buildings {
 		building, bErr := FromEntityCount(c, b.NMSConfig.Buildings, item, 1)
 		if bErr != nil {
 			return nil, bErr
 		}
+
 		buildings = append(buildings, *building)
 	}
 

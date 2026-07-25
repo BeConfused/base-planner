@@ -1,5 +1,5 @@
-module nms-planner-cli
+module BeConfused/nms-planner-cli
 
 go 1.26.5
 
-require gopkg.in/yaml.v3 v3.0.1
+require gopkg.in/yaml.v3 v3.0.1 // indirect

@@ -1,8 +1,8 @@
 package plan
 
 import (
+	nomanssky "BeConfused/nms-planner-cli/internal/pkg/no-mans-sky"
 	"fmt"
-	nomanssky "nms-planner-cli/internal/pkg/no-mans-sky"
 	"strings"
 )
 

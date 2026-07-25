@@ -1,6 +1,6 @@
 package plan
 
-import nomanssky "nms-planner-cli/internal/pkg/no-mans-sky"
+import nomanssky "BeConfused/nms-planner-cli/internal/pkg/no-mans-sky"
 
 type Requirement[C nomanssky.NMSEntity] struct {
 	Target    *C

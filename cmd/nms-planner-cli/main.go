@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 
 	nomanssky "github.com/BeConfused/nms-planner-cli/internal/pkg/no-mans-sky"
 	"github.com/BeConfused/nms-planner-cli/internal/pkg/plan"
@@ -21,13 +22,15 @@ func main() {
 	config := new(nomanssky.Config)
 
 	// fmt.Println("Reading Config...")
-	configFile, configFileErr := os.ReadFile(paths.Config)
+	cleanConfigPath := filepath.Clean(paths.Config)
+	configFile, configFileErr := os.ReadFile(cleanConfigPath)
 	if configFileErr != nil {
 		panic(configFileErr)
 	}
 
 	// fmt.Println("Reading Plan...")
-	pathFile, pathFileErr := os.ReadFile(paths.Plan)
+	cleanPlanPath := filepath.Clean(paths.Plan)
+	pathFile, pathFileErr := os.ReadFile(cleanPlanPath)
 	if pathFileErr != nil {
 		panic(pathFileErr)
 	}

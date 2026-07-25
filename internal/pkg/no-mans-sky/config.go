@@ -19,5 +19,10 @@ func (c Config) FindRecipe(eID string) (*Recipe, error) {
 			return &recipe, nil
 		}
 	}
+
 	return nil, fmt.Errorf("%w: Ensure, that the recipes Esxist and all IDs are properly set", ErrRecipeNotFound)
+}
+
+func (c Config) IsEmpty() bool {
+	return len(c.Materials) == 0 && len(c.Buildings) == 0 && len(c.Recipes) == 0
 }

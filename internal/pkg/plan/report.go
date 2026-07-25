@@ -15,26 +15,28 @@ func (r *Report[C]) FormatAsString() string {
 	indentChar := ' '
 	charsPerIndent := 2
 	startingIndentLevel := 1
-	report := "Report:\n"
+	var report strings.Builder
+	report.WriteString("Report:\n")
 	for _, item := range r.List {
 		target := *item.Target
-		report += fmt.Sprintf("- %v x %s\n", item.Amount, target.GetName())
+		report.WriteString(fmt.Sprintf("- %v x %s\n", item.Amount, target.GetName()))
 		for _, material := range item.Materials {
-			report += indent(indentChar, charsPerIndent, startingIndentLevel)
-			report += fmt.Sprintf("- %v x %s\n", material.Amount, material.Target.GetName())
+			report.WriteString(indent(indentChar, charsPerIndent, startingIndentLevel))
+			report.WriteString(fmt.Sprintf("- %v x %s\n", material.Amount, material.Target.GetName()))
 		}
 	}
 	total := r.getTotal()
-	report += "Total:\n"
+	report.WriteString("Total:\n")
 	for _, item := range total {
 		target := *item.Target
-		report += fmt.Sprintf("- %v x %s\n", item.Amount, target.GetName())
+		report.WriteString(fmt.Sprintf("- %v x %s\n", item.Amount, target.GetName()))
 		for _, material := range item.Materials {
-			report += indent(indentChar, charsPerIndent, startingIndentLevel)
-			report += fmt.Sprintf("- %v x %s\n", material.Amount, material.Target.GetName())
+			report.WriteString(indent(indentChar, charsPerIndent, startingIndentLevel))
+			report.WriteString(fmt.Sprintf("- %v x %s\n", material.Amount, material.Target.GetName()))
 		}
 	}
-	return report
+
+	return report.String()
 }
 
 func (r *Report[C]) getTotal() []Requirement[nomanssky.Material] {
@@ -65,5 +67,6 @@ func findIndexByID[C nomanssky.NMSEntity](array []Requirement[C], f Requirement[
 			return index
 		}
 	}
+
 	return -1
 }

@@ -42,7 +42,11 @@ func main() {
 	if umErr != nil {
 		panic(umErr)
 	}
-	base.NMSConfig = *config
+	if base.NMSConfig.IsEmpty() {
+		base.NMSConfig = *config
+	} else { // Temporary fix: Larger refactoring required
+		config = &base.NMSConfig
+	}
 
 	report, rErr := base.GetReport(*config)
 	if rErr != nil {

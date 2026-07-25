@@ -3,8 +3,7 @@ pkgs.mkShell {
   buildInputs = with pkgs; [
     go_1_26
     git
-    nodejs_26
-    pnpm
+    gitleaks
   ];
   GOPATH="${toString ./.}/.nix-workspace";
   GOFLAGS="-o=${toString ./.}/build/";

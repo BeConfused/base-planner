@@ -7,7 +7,7 @@ type Building struct {
 	Name string `yaml:"name"`
 }
 
-// GetID is an implementation requirement from NMS Entity: Returns the building's ID.
+// GetID is an implementation requirement from Entity: Returns the building's ID.
 func (b Building) GetID() string {
 	return b.ID
 }

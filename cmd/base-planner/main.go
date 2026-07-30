@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	dataset "github.com/BeConfused/base-planner/internal/pkg/dataset"
+	"github.com/BeConfused/base-planner/internal/pkg/dataset"
 	"github.com/BeConfused/base-planner/internal/pkg/plan"
 	"github.com/BeConfused/base-planner/internal/pkg/util"
 
@@ -46,10 +46,10 @@ func main() {
 		panic(umErr)
 	}
 
-	if base.NMSConfig.IsEmpty() {
-		base.NMSConfig = *config
+	if base.DataConfig.IsEmpty() {
+		base.DataConfig = *config
 	} else { // Temporary fix: Larger refactoring required
-		config = &base.NMSConfig
+		config = &base.DataConfig
 	}
 
 	report, rErr := base.GetReport(*config)

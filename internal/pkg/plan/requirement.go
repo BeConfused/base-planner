@@ -3,7 +3,7 @@ package plan
 import (
 	"fmt"
 
-	dataset "github.com/BeConfused/base-planner/internal/pkg/dataset"
+	"github.com/BeConfused/base-planner/internal/pkg/dataset"
 )
 
 // Requirement is a generic type, that is supposed to function as a resolved

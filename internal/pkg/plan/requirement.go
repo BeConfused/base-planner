@@ -15,7 +15,7 @@ type Requirement[C dataset.Entity] struct {
 }
 
 // FromEntityCount creates a Requirement given an Entity.
-// Invokes an internal recusive implementation with a starting value of 1.
+// Invokes an internal recursive implementation with a starting value of 1.
 // Parameters:
 // - config: Given to find a recipe to resolve against.
 // - c: a list of entities to resolve the recipe against.

@@ -1,4 +1,4 @@
-# Base Plannet (CLI)
+# Base Planner (CLI)
 
 This CLI has been created, to allow for a collected summary based on a configuration of available recipes and resources.
 

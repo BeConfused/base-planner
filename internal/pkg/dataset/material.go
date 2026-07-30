@@ -1,4 +1,4 @@
-package nomanssky
+package dataset
 
 // Material implements the NMSEntity interface and provides a set of YAML annotations for unmarshaling
 // when loaded from the given YAML Configuration. Unlike Building, it is also used as an intermediary.

@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	nomanssky "github.com/BeConfused/nms-planner-cli/internal/pkg/no-mans-sky"
+	dataset "github.com/BeConfused/nms-planner-cli/internal/pkg/dataset"
 	"github.com/BeConfused/nms-planner-cli/internal/pkg/plan"
 	"github.com/BeConfused/nms-planner-cli/internal/pkg/util"
 
@@ -20,7 +20,7 @@ func main() {
 	}
 
 	base := new(plan.Base)
-	config := new(nomanssky.Config)
+	config := new(dataset.Config)
 
 	cleanConfigPath := filepath.Clean(paths.Config)
 

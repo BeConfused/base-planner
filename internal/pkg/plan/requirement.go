@@ -3,15 +3,15 @@ package plan
 import (
 	"fmt"
 
-	nomanssky "github.com/BeConfused/nms-planner-cli/internal/pkg/no-mans-sky"
+	dataset "github.com/BeConfused/nms-planner-cli/internal/pkg/dataset"
 )
 
 // Requirement is a generic type, that is supposed to function as a resolved
 // EntityCount with direct access to a given entity.
-type Requirement[C nomanssky.NMSEntity] struct {
+type Requirement[C dataset.NMSEntity] struct {
 	Target    *C
 	Amount    int32
-	Materials []Requirement[nomanssky.Material]
+	Materials []Requirement[dataset.Material]
 }
 
 // FromEntityCount creates a Requirement given an NMSEntity.
@@ -20,18 +20,18 @@ type Requirement[C nomanssky.NMSEntity] struct {
 // - config: Given to find a recipe to resolve against.
 // - c: a list of entities to resolve the recipe against.
 // - ec: the entityCount to create the Requirement from.
-func FromEntityCount[C nomanssky.NMSEntity](
-	config nomanssky.Config,
+func FromEntityCount[C dataset.NMSEntity](
+	config dataset.Config,
 	c []C,
-	ec nomanssky.EntityCount[C],
+	ec dataset.EntityCount[C],
 ) (*Requirement[C], error) {
 	return fromEntityCount(config, c, ec, 1)
 }
 
-func fromEntityCount[C nomanssky.NMSEntity](
-	config nomanssky.Config,
+func fromEntityCount[C dataset.NMSEntity](
+	config dataset.Config,
 	c []C,
-	entityCount nomanssky.EntityCount[C],
+	entityCount dataset.EntityCount[C],
 	amountAmp int32,
 ) (*Requirement[C], error) {
 	entityRef, geErr := entityCount.GetEntity(c)
@@ -41,7 +41,7 @@ func fromEntityCount[C nomanssky.NMSEntity](
 
 	entity := *entityRef
 
-	materials := []Requirement[nomanssky.Material]{}
+	materials := []Requirement[dataset.Material]{}
 
 	recipe, rErr := config.FindRecipe(entity.GetID())
 	if rErr == nil {

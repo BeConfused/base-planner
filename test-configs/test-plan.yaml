@@ -1,6 +1,6 @@
 baseName: test
 buildings:
-- id: electromagnetic-generator
+- id: building-1
   amount: 1
-- id: supply-depot
+- id: building-2
   amount: 3

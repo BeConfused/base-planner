@@ -1,4 +1,4 @@
-package nomanssky
+package dataset
 
 // Building implements the NMSEntity interface and provides a set of YAML annotations for unmarshaling
 // when loaded from the given YAML Configuration.

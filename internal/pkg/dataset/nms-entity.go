@@ -1,4 +1,4 @@
-package nomanssky
+package dataset
 
 // NMSEntity is an interface to guarantee a set of available functions.
 type NMSEntity interface {

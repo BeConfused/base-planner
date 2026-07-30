@@ -1,4 +1,4 @@
-package nomanssky
+package dataset
 
 import (
 	"errors"

@@ -1,6 +1,6 @@
-// Package nomanssky provides all functions required to interact with
+// Package dataset provides all functions required to interact with
 // a given list of entities, based on a loaded yaml configuration.
-package nomanssky
+package dataset
 
 import (
 	"errors"

@@ -7,8 +7,8 @@ import (
 	"github.com/BeConfused/base-planner/internal/pkg/dataset"
 )
 
-// Report eceives a List of Requirements to Report on and exposes
-// a set of Functions to receive them back in a formatted way.
+// Report receives a list of Requirements to report on and exposes
+// a set of functions to receive them back in a formatted way.
 type Report[C dataset.Entity] struct {
 	List []Requirement[C]
 }

@@ -1,4 +1,4 @@
-module github.com/BeConfused/nms-planner-cli
+module github.com/BeConfused/base-planner
 
 go 1.26.5
 

@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"strings"
 
-	dataset "github.com/BeConfused/nms-planner-cli/internal/pkg/dataset"
+	dataset "github.com/BeConfused/base-planner/internal/pkg/dataset"
 )
 
 // Report eceives a List of Requirements to Report on and exposes
 // a set of Functions to receive them back in a formatted way.
-type Report[C dataset.NMSEntity] struct {
+type Report[C dataset.Entity] struct {
 	List []Requirement[C]
 }
 
@@ -76,7 +76,7 @@ func indent(s rune, rpl int, l int) string {
 	return strings.Repeat(string(s), l*rpl)
 }
 
-func findIndexByID[C dataset.NMSEntity](array []Requirement[C], f Requirement[C]) int {
+func findIndexByID[C dataset.Entity](array []Requirement[C], f Requirement[C]) int {
 	toFind := *f.Target
 	for index, item := range array {
 		current := *item.Target

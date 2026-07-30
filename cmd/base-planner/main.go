@@ -6,9 +6,9 @@ import (
 	"os"
 	"path/filepath"
 
-	dataset "github.com/BeConfused/nms-planner-cli/internal/pkg/dataset"
-	"github.com/BeConfused/nms-planner-cli/internal/pkg/plan"
-	"github.com/BeConfused/nms-planner-cli/internal/pkg/util"
+	dataset "github.com/BeConfused/base-planner/internal/pkg/dataset"
+	"github.com/BeConfused/base-planner/internal/pkg/plan"
+	"github.com/BeConfused/base-planner/internal/pkg/util"
 
 	"gopkg.in/yaml.v3"
 )

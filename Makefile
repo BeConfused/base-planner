@@ -8,7 +8,7 @@ build:
 
 .PHONY: run
 run:
-	@go run ./cmd/nms-planner-cli/main.go
+	@go run ./cmd/base-planner/main.go
 
 .PHONY: lint
 lint:

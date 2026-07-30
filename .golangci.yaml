@@ -15,7 +15,7 @@ linters:
         main:
           allow:
           - $gostd
-          - github.com/BeConfused/nms-planner-cli
+          - github.com/BeConfused/base-planner
           - gopkg.in/yaml.v3
 # formatters:
 #   # See the dedicated "formatters" documentation section.

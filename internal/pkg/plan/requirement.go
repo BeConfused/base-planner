@@ -3,24 +3,24 @@ package plan
 import (
 	"fmt"
 
-	dataset "github.com/BeConfused/nms-planner-cli/internal/pkg/dataset"
+	dataset "github.com/BeConfused/base-planner/internal/pkg/dataset"
 )
 
 // Requirement is a generic type, that is supposed to function as a resolved
 // EntityCount with direct access to a given entity.
-type Requirement[C dataset.NMSEntity] struct {
+type Requirement[C dataset.Entity] struct {
 	Target    *C
 	Amount    int32
 	Materials []Requirement[dataset.Material]
 }
 
-// FromEntityCount creates a Requirement given an NMSEntity.
+// FromEntityCount creates a Requirement given an Entity.
 // Invokes an internal recusive implementation with a starting value of 1.
 // Parameters:
 // - config: Given to find a recipe to resolve against.
 // - c: a list of entities to resolve the recipe against.
 // - ec: the entityCount to create the Requirement from.
-func FromEntityCount[C dataset.NMSEntity](
+func FromEntityCount[C dataset.Entity](
 	config dataset.Config,
 	c []C,
 	ec dataset.EntityCount[C],
@@ -28,7 +28,7 @@ func FromEntityCount[C dataset.NMSEntity](
 	return fromEntityCount(config, c, ec, 1)
 }
 
-func fromEntityCount[C dataset.NMSEntity](
+func fromEntityCount[C dataset.Entity](
 	config dataset.Config,
 	c []C,
 	entityCount dataset.EntityCount[C],

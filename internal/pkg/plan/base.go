@@ -1,7 +1,7 @@
 package plan
 
 import (
-	dataset "github.com/BeConfused/nms-planner-cli/internal/pkg/dataset"
+	dataset "github.com/BeConfused/base-planner/internal/pkg/dataset"
 )
 
 // Base implements the plan interface to create a report based on an inventory of building references.

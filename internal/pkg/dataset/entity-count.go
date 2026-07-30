@@ -9,7 +9,7 @@ import (
 var ErrEntityNotFound = errors.New("entity not found")
 
 // EntityCount loads an unresolved id of a given entity, that can be Resolved using the GetEntity method.
-type EntityCount[C NMSEntity] struct {
+type EntityCount[C Entity] struct {
 	Amount   int32  `yaml:"amount"`
 	EntityID string `yaml:"id"`
 }

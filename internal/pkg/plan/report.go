@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"strings"
 
-	nomanssky "github.com/BeConfused/nms-planner-cli/internal/pkg/no-mans-sky"
+	"github.com/BeConfused/base-planner/internal/pkg/dataset"
 )
 
-// Report eceives a List of Requirements to Report on and exposes
-// a set of Functions to receive them back in a formatted way.
-type Report[C nomanssky.NMSEntity] struct {
+// Report receives a list of Requirements to report on and exposes
+// a set of functions to receive them back in a formatted way.
+type Report[C dataset.Entity] struct {
 	List []Requirement[C]
 }
 
@@ -55,8 +55,8 @@ func (r *Report[C]) FormatAsString() string {
  * material a is needed by entity 1 and entity 3.
  * it will add the material to the list on entity 1 and then increment its amount by the amount of entity 3.
  */
-func (r *Report[C]) getTotal() []Requirement[nomanssky.Material] {
-	total := []Requirement[nomanssky.Material]{}
+func (r *Report[C]) getTotal() []Requirement[dataset.Material] {
+	total := []Requirement[dataset.Material]{}
 
 	for _, item := range r.List {
 		for _, material := range item.Materials {
@@ -76,7 +76,7 @@ func indent(s rune, rpl int, l int) string {
 	return strings.Repeat(string(s), l*rpl)
 }
 
-func findIndexByID[C nomanssky.NMSEntity](array []Requirement[C], f Requirement[C]) int {
+func findIndexByID[C dataset.Entity](array []Requirement[C], f Requirement[C]) int {
 	toFind := *f.Target
 	for index, item := range array {
 		current := *item.Target

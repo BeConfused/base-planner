@@ -6,9 +6,9 @@ import (
 	"os"
 	"path/filepath"
 
-	nomanssky "github.com/BeConfused/nms-planner-cli/internal/pkg/no-mans-sky"
-	"github.com/BeConfused/nms-planner-cli/internal/pkg/plan"
-	"github.com/BeConfused/nms-planner-cli/internal/pkg/util"
+	"github.com/BeConfused/base-planner/internal/pkg/dataset"
+	"github.com/BeConfused/base-planner/internal/pkg/plan"
+	"github.com/BeConfused/base-planner/internal/pkg/util"
 
 	"gopkg.in/yaml.v3"
 )
@@ -20,7 +20,7 @@ func main() {
 	}
 
 	base := new(plan.Base)
-	config := new(nomanssky.Config)
+	config := new(dataset.Config)
 
 	cleanConfigPath := filepath.Clean(paths.Config)
 
@@ -46,10 +46,10 @@ func main() {
 		panic(umErr)
 	}
 
-	if base.NMSConfig.IsEmpty() {
-		base.NMSConfig = *config
+	if base.DataConfig.IsEmpty() {
+		base.DataConfig = *config
 	} else { // Temporary fix: Larger refactoring required
-		config = &base.NMSConfig
+		config = &base.DataConfig
 	}
 
 	report, rErr := base.GetReport(*config)

@@ -1,25 +1,25 @@
 recipes:
-- id: electromagnetic-generator
+- id: building-1
   requirements:
-  - id: metal-plating
-    amount: 2
-  - id: magnetised-ferrite
-    amount: 60
-  - id: chromatic-metal
-    amount: 75
-- id: supply-depot
+  - id: material-1
+    amount: 4
+  - id: material-2
+    amount: 15
+  - id: material-3
+    amount: 100
+- id: building-2
   requirements:
-  - id: metal-plating
-    amount: 10
+  - id: material-1
+    amount: 16
 materials:
-- id: metal-plating
-  name: Metal Plating
-- id: magnetised-ferrite
-  name: Magnetised Ferrite
-- id: chromatic-metal
-  name: Chromatic Metal
+- id: material-1
+  name: Composite Material
+- id: material-2
+  name: Base Material 1
+- id: material-3
+  name: Base Material 2
 buildings:
-- id: electromagnetic-generator
-  name: Electromagnetic Generator
-- id: supply-depot
-  name: Supply Depot
+- id: building-1
+  name: Building One
+- id: building-2
+  name: Building Two

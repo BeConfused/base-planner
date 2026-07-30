@@ -36,7 +36,7 @@ func fromEntityCount[C dataset.Entity](
 ) (*Requirement[C], error) {
 	entityRef, geErr := entityCount.GetEntity(c)
 	if geErr != nil {
-		return nil, fmt.Errorf("building requirement failed: %w", geErr)
+		return nil, fmt.Errorf("error when creating requirement for ID=%s - %w", entityCount.EntityID, geErr)
 	}
 
 	entity := *entityRef

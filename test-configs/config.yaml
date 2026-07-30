@@ -20,6 +20,6 @@ materials:
   name: Base Material 2
 buildings:
 - id: building-1
-  name: Electromagnetic Generator
+  name: Building One
 - id: building-2
-  name: Supply Depot
+  name: Building Two
